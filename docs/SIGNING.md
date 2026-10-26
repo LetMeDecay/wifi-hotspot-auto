@@ -57,3 +57,20 @@ powershell -ExecutionPolicy Bypass -File .\sign.ps1 -File .\dist\WifiHotspotAuto
 ```
 
 `sign.ps1` uses `EphemeralKeySet` so the private key is not imported into the certificate store. It signs with SHA-256 and no timestamp; add a timestamp server in the script if you need the signature to outlive the certificate.
+
+## Alternatives to a self-signed certificate
+
+| Option | Cost | SmartScreen / Defender | Notes |
+| --- | --- | --- | --- |
+| Self-signed + local trust | Free | Only this PC; Defender behavior blocks may remain | Current setup. Install the `.cer` into Trusted Root. |
+| OV code-signing certificate | ~$200–400 / year | Reputation builds over time | Identity/business validation; hardware token/HSM. |
+| EV code-signing certificate | ~$300–600 / year | Immediate SmartScreen reputation | Hardware token/HSM; best for public distribution. |
+| [SignPath Foundation](https://signpath.org/) | Free for eligible OSS | OV certificate, GitHub integration | Apply with the public repository; approval required. |
+| [Azure Trusted Signing](https://learn.microsoft.com/azure/trusted-signing/) | ~$10 / month | Cloud signing, no hardware token | Eligibility requires verifiable organization history; GitHub Actions integration. |
+| Microsoft Store / MSIX | Store account | Store-signed, trusted | Also allows declaring the `wiFiControl` capability and a cleaner startup task; more packaging work. |
+| Unsigned + allow | Free | Manual bypass only | Submit a false positive, restore from Protection History, or add an exclusion. |
+
+For a personal machine, trusting the self-signed certificate and allowing the file in Defender is usually enough. For public distribution, **SignPath Foundation** (free for OSS) or an OV/EV certificate is the practical route; **Azure Trusted Signing** is a good option if eligible.
+
+GitHub itself does not sign Windows binaries. A GitHub Actions workflow can sign with a certificate secret or with Azure Trusted Signing, but the certificate/service is still required.
+
