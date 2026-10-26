@@ -9,6 +9,7 @@ A Windows tray utility that connects to a Wi-Fi network and starts Mobile Hotspo
 
 - 自动连接指定 Wi-Fi / Auto-connect to a configured Wi-Fi SSID
 - 自动开启移动热点 / Auto-start Windows Mobile Hotspot
+- 禁用 Windows“无连接 5 分钟自动关闭” / Disables the 5-minute no-connections timeout
 - 可设置热点名称、密码、频段 / Configurable hotspot SSID, password, band
 - 托盘菜单：设置、立即执行、日志、退出 / Tray menu
 - 可选登录计划任务，最高权限运行 / Optional logon scheduled task with highest privileges

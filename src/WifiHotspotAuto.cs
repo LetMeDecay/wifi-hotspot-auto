@@ -380,6 +380,7 @@ namespace WifiHotspotAuto
                 {
                     if (sameSsid && sameBand)
                     {
+                        DisableNoConnectionsTimeout(log);
                         log("热点已开启，配置一致");
                         return true;
                     }
@@ -412,6 +413,7 @@ namespace WifiHotspotAuto
                     return false;
                 }
 
+                DisableNoConnectionsTimeout(log);
                 log("热点已开启: " + cfg.HotspotSsid);
                 return true;
             }
@@ -443,6 +445,19 @@ namespace WifiHotspotAuto
             }
             catch { }
             return fallback;
+        }
+
+        private static void DisableNoConnectionsTimeout(Action<string> log)
+        {
+            try
+            {
+                NetworkOperatorTetheringManager.DisableNoConnectionsTimeout();
+                log("已禁用无连接自动关闭");
+            }
+            catch (Exception ex)
+            {
+                log("禁用无连接自动关闭失败: " + ex.Message);
+            }
         }
 
         private static void WaitAction(IAsyncAction op)
