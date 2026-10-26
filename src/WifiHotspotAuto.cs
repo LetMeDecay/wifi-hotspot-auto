@@ -100,6 +100,20 @@ namespace WifiHotspotAuto
         }
     }
 
+    internal static class AppIcon
+    {
+        public static Icon Load()
+        {
+            try
+            {
+                Icon icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+                if (icon != null) return icon;
+            }
+            catch { }
+            return SystemIcons.Application;
+        }
+    }
+
     internal sealed class Config
     {
         public string WifiSsid = "";
@@ -476,7 +490,7 @@ namespace WifiHotspotAuto
             MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen;
             Font = new Font("Microsoft YaHei UI", 9F);
-            Icon = SystemIcons.Application;
+            Icon = AppIcon.Load();
             AutoScaleMode = AutoScaleMode.None;
             AutoSize = false;
 
@@ -623,7 +637,7 @@ namespace WifiHotspotAuto
             catch { }
 
             _tray = new NotifyIcon();
-            _tray.Icon = SystemIcons.Application;
+            _tray.Icon = AppIcon.Load();
             _tray.Text = "Wi-Fi 热点自启";
             _tray.Visible = true;
 

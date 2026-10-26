@@ -4,7 +4,7 @@ if not exist dist mkdir dist
 set "CSC=%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 set "FW=%WINDIR%\Microsoft.NET\Framework64\v4.0.30319"
 "%CSC%" /nologo /target:winexe /platform:x64 /optimize+ ^
-  /out:dist\WifiHotspotAuto.exe /win32manifest:src\app.manifest ^
+  /out:dist\WifiHotspotAuto.exe /win32manifest:src\app.manifest /win32icon:src\app.ico ^
   /r:"%FW%\System.dll" ^
   /r:"%FW%\System.Core.dll" ^
   /r:"%FW%\System.Drawing.dll" ^

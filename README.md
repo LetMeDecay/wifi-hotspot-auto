@@ -1,3 +1,5 @@
+<img src="docs/icon.png" width="72" alt="Wi-Fi Hotspot Auto icon">
+
 # Wi-Fi Hotspot Auto / Wi-Fi 热点自启
 
 Windows 托盘小工具：登录后自动连接指定 Wi-Fi，并开启移动热点。  
