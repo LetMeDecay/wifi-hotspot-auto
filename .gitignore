@@ -1,0 +1,13 @@
+# Private keys and local secrets
+*.pfx
+*.snk
+*.pvk
+config.ini
+log.txt
+error.txt
+winrt_test_result.txt
+
+# Build output
+bin/
+obj/
+.vs/
